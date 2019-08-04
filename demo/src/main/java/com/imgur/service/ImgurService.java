@@ -29,7 +29,7 @@ public class ImgurService {
 
         String viewImageUrl = url.concat("/").concat(imageHash);
 
-        ResponseEntity<ViewImage> exchange = restTemplate.exchange(url, HttpMethod.GET, new HttpEntity(getAuthHeaders()), ViewImage.class);
+        ResponseEntity<ViewImage> exchange = restTemplate.exchange(viewImageUrl, HttpMethod.GET, new HttpEntity(getAuthHeaders()), ViewImage.class);
 
         ViewImage image = exchange.getBody();
 
@@ -40,9 +40,9 @@ public class ImgurService {
 
         String uploadImageUrl = url.concat("/").concat("upload");
 
-        HttpEntity<ViewImage> viewImageHttpEntity = new HttpEntity(uploadImage,getAuthHeaders());
+        HttpEntity<UploadImage> viewImageHttpEntity = new HttpEntity(uploadImage,getAuthHeaders());
 
-        if(restTemplate.exchange(url, HttpMethod.POST, viewImageHttpEntity, ViewImage.class)!=null)
+        if(restTemplate.exchange(uploadImageUrl, HttpMethod.POST, viewImageHttpEntity, ViewImage.class)!=null)
             return true;
         return false;
     }
