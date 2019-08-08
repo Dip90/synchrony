@@ -1,11 +1,7 @@
 package com.imgur.model;
 
 import javax.annotation.Generated;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.hibernate.annotations.GeneratorType;
 import org.hibernate.annotations.GenericGenerator;
@@ -17,6 +13,8 @@ public class User {
 	
 	@Id
 	@Column(name="USER_ID")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	//@SequenceGenerator(sequenceName = "USER_SEQUENCE",name = "user_seq_generator")
 	private int user_id;
 	
 	@Column(name="USER_NAME")

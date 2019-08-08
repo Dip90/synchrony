@@ -14,6 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 import com.imgur.service.UserService;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.InMemoryTokenRepositoryImpl;
@@ -28,6 +29,9 @@ public class UserAuthorizationFilter extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+
+		http.sessionManagement().sessionCreationPolicy(
+				SessionCreationPolicy.STATELESS);
 
 		http.authorizeRequests().antMatchers("/","/h2-console**","/user**")
 				.permitAll();
